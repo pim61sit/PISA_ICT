@@ -1,0 +1,155 @@
+#### Installing Packages #### 
+
+install.packages("tidyverse") 
+install.packages("dplyr") 
+library(tidyverse) 
+library(readxl) 
+library(dplyr) 
+library(writexl) 
+
+#### Read data #### 
+
+School_Q <- read_xlsx("~/Desktop/Project_Folder/20240907_PISA_ICT_Practice/Data/School_Q_AUS_EST_JPN.xlsx") 
+Student_Q <- read_xlsx("~/Desktop/Project_Folder/20240907_PISA_ICT_Practice/Data/Student_Q_AUS_EST_JPN.xlsx") 
+
+#### Merge files #### 
+
+Merged_data <- School_Q %>% 
+        left_join(Student_Q, by = c("CNT", "CNTSCHID")) 
+
+print(Merged_data) 
+
+setwd("~/Desktop/Project_Folder/20240907_PISA_ICT_Practice/Data") 
+write_xlsx(Merged_data, "Merged_AUS_EST_JPN.xlsx")   
+
+##### Descriptive Statistics School_Q Variables ##### 
+
+Output_School_Q <- describe(Merged_data[c("SC001Q01TA", "SC013Q01TA", "PRIVATESCH", "SCHLTYPE", "RATCMP1", "RATCMP2", "RATTAB", "DIGDVPOL")]) 
+
+nice_table( 
+        Output_School_Q, 
+        title = c("Table 1", "School_Q Descriptive Statistics"), 
+        ) 
+
+##### Descriptive Statistics ICT Resources Variables ##### 
+
+Output_ICTAval <- describe(Merged_data[c("ICTRES", "ICTSCH", "ICTAVSCH", "ICTHOME", "ICTAVHOM", "ICTQUAL")]) 
+
+nice_table( 
+        Output_ICTAval, 
+        title = c("Table 2", "ICT_Aval Descriptive Statistics"), 
+        ) 
+
+  
+
+##### Descriptive Statistics ICT Use Variables ##### 
+
+Output_ICTUse <- describe(Merged_data[c("ICTSUBJ", "ICTENQ", "ICTFEED", "ICTOUT", "ICTWKDY", "ICTWKEND", "ICTREG")]) 
+
+nice_table( 
+        Output_ICTUse, 
+        title = c("Table 3", "ICT_Use Descriptive Statistics"), 
+          ) 
+
+##### Descriptive Statistics Personality Variables ##### 
+
+Output_Personality <- describe(Merged_data[c("PERSEVAGR", "CURIOAGR", "COOPAGR", "SDLEFF")]) 
+
+nice_table( 
+        Output_Personality, 
+        title = c("Table 4", "Personality Descriptive Statistics"), 
+        ) 
+
+  
+
+##### Descriptive Statistics Personality Variables ##### 
+
+Output_Math_Related <- describe(Merged_data[c("MATHEFF", "MATHEF21", "MATHMOT")]) 
+
+nice_table( 
+        Output_Math_Related, 
+        title = c("Table 5", "Math_Related Descriptive Statistics"), 
+        )
+
+##### Descriptive Statistics School_Q Variables ##### 
+
+Output_School_Q <- describe(Merged_data[c("SC001Q01TA", "SC013Q01TA", "PRIVATESCH", "SCHLTYPE", "RATCMP1", "RATCMP2", "RATTAB", "DIGDVPOL")]) 
+
+nice_table( 
+        Output_School_Q, 
+        title = c("Table 1", "School_Q Descriptive Statistics"), 
+        ) 
+
+  
+
+##### Descriptive Statistics ICT Resources Variables ##### 
+
+Output_ICTAval <- describe(Merged_data[c("ICTRES", "ICTSCH", "ICTAVSCH", "ICTHOME", "ICTAVHOM", "ICTQUAL")]) 
+
+nice_table( 
+        Output_ICTAval, 
+        title = c("Table 2", "ICT_Aval Descriptive Statistics"), 
+
+) 
+
+##### Descriptive Statistics ICT Use Variables ##### 
+
+Output_ICTUse <- describe(Merged_data[c("ICTSUBJ", "ICTENQ", "ICTFEED", "ICTOUT", "ICTWKDY", "ICTWKEND", "ICTREG")]) 
+
+nice_table( 
+        Output_ICTUse, 
+        title = c("Table 3", "ICT_Use Descriptive Statistics"), 
+        ) 
+
+##### Descriptive Statistics Personality Variables ##### 
+
+Output_Personality <- describe(Merged_data[c("PERSEVAGR", "CURIOAGR", "COOPAGR", "SDLEFF")]) 
+
+nice_table( 
+        Output_Personality, 
+        title = c("Table 4", "Personality Descriptive Statistics"), 
+          ) 
+
+##### Descriptive Statistics Math_Related Variables ##### 
+
+Output_Math_Related <- describe(Merged_data[c("MATHEFF", "MATHEF21", "MATHMOT")]) 
+
+nice_table( 
+        Output_Math_Related, 
+        title = c("Table 5", "Math_Related Descriptive Statistics"), 
+          ) 
+
+  
+
+##### Descriptive Statistics Math Achievement Variables ##### 
+
+Output_Math_Achievement <- describe(Merged_data[c("PV1MATH", "PV2MATH", "PV3MATH", "PV4MATH", "PV5MATH", "PV6MATH", "PV7MATH", "PV8MATH", "PV9MATH", 
+               "PV10MATH")]) 
+
+nice_table( 
+        Output_Achievement, 
+        title = c("Table 6", "Math Achievement Descriptive Statistics"), 
+
+          ) 
+
+##### Descriptive Statistics Reading Achievement Variables ##### 
+
+Output_Reading_Achievement <- describe(Merged_data[c("PV1READ", "PV2READ", "PV3READ", "PV4READ", "PV5READ", "PV6READ", "PV7READ", "PV8READ", 
+
+                                             "PV9READ", "PV10READ")]) 
+
+nice_table( 
+        Output_Reading_Achievement, 
+        title = c("Table 7", "Reading Achievement Descriptive Statistics"), 
+        ) 
+
+##### Descriptive Statistics Science Achievement Variables ##### 
+
+Output_Science_Achievement <- describe(Merged_data[c("PV1SCIE", "PV2SCIE", "PV3SCIE", "PV4SCIE", "PV5SCIE", "PV6SCIE", "PV7SCIE",  
+                                                     "PV8SCIE", "PV9SCIE", "PV10SCIE")]) 
+
+nice_table(
+    Output_Science_Achievement, 
+    title = c("Table 8", "Scinece Achievement Descriptive Statistics"), 
+) 
+
